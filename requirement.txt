@@ -1,8 +1,0 @@
-django
-django-admin-tools
--e hg+https://bitbucket.org/salvator/django-admintools-bootstrap#egg=admintools_bootstrap
-psycopg2
-south
-django-haystack
-whoosh
-django-social-auth
