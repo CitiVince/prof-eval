@@ -1,0 +1,21 @@
+.prof_container{float:left; padding:10px 10px 10px 10px;width:800px;}
+.prof_container h2{margin-bottom:10px;}
+.prof_pic{float:left;}
+.prof_details{float:left;padding:10px 10px 10px 10px;}
+.prof_infos{float:left;padding:10px 10px 10px 10px;}
+
+.comment_container{float:left;padding:10px 10px 10px 10px;}
+.comment_form{float:left;padding:50px 10px 10px 30px;}
+.slider_container{float:left;padding:10px 10px 10px 10px;width:300px;clear:both;}
+.slider{float:left;margin-bottom:20px;width:250px;}
+.amount{float:left;}
+
+.fb_connect{background:url(img/facebook-connect.png) no-repeat;
+    cursor:pointer;
+    width: 130px;
+    height: 41px;
+    padding:41px 130px 0px 0px;
+    border: none;}
+
+.done_container{float:left;padding:10px 10px 10px 10px;}
+.nav_search{float:left;margin-top:10px;}

@@ -1,0 +1,4 @@
+<script>
+var search_list = [{% for search in search_list %} {% if not forloop.last %}'{{ search }}',{% else %}'{{ search }}'{% endif %}{% endfor %}]
+$('#search').typeahead({source: search_list}) 
+</script>

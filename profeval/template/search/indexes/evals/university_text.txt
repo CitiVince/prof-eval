@@ -1,0 +1,3 @@
+{{ object.name }}
+{{ object.location }}
+{{ object.name_auto }}
