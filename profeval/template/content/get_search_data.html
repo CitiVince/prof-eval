@@ -1,4 +1,9 @@
 <script>
 var search_list = [{% for search in search_list %} {% if not forloop.last %}'{{ search }}',{% else %}'{{ search }}'{% endif %}{% endfor %}]
-$('#search').typeahead({source: search_list}) 
+$('#search').typeahead({source: search_list,
+						updater:function (item) {
+
+						window.location = "http://127.0.0.1:8000/goto_prof/?prof_name=" + item
+					        return item;
+					    }}) 
 </script>

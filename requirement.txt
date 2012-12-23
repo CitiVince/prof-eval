@@ -6,3 +6,4 @@ south
 django-haystack
 whoosh
 django-social-auth
+wadofstuff-django-serializers

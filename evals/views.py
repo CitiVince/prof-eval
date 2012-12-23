@@ -4,8 +4,10 @@ from django.template import Context, loader
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django import forms
 from django.core import serializers
+from django.contrib.auth.models import Group
 import json
 import collections
+import string
 
 from evals.models import Professor, University, Comment
 from haystack.views import SearchView
@@ -152,12 +154,14 @@ def get_search_data(request):
     search_list = []
     #define fields
     prof_fields = ['pre_name', 'last_name']
-    all_profs = json.loads(serializers.serialize("json", Professor.objects.all(),fields=('last_name','pre_name')))
-
-
+    #all_profs = json.loads(serializers.serialize("json", Professor.objects.all(),fields=('last_name','pre_name', 'university_id__name')))
+    all_profs = json.loads(serializers.serialize("json", Professor.objects.all(),relations={'university':{'fields':('name',)}}))
+    
+    #print all_profs
     for prof in all_profs:
-        print prof
-        current_prof = str(prof['fields']['pre_name']) + " " + str(prof['fields']['last_name'])
+        
+        current_prof = prof['fields']['pre_name'].encode('utf-8') + " " + prof['fields']['last_name'].encode('utf-8') + ", " + prof['fields']['university']['fields']['name'].encode('utf-8')
+       
         search_list.append(current_prof)
 
     #convert data
@@ -171,10 +175,26 @@ def get_search_data(request):
         else:
             return data
     #search_list = json.dumps(search_list)
-    print search_list
+
 
     return render_to_response('content/get_search_data.html', {"search_list":search_list}, RequestContext(request))
 
+
+def goto_prof(request):
+    #get prof info
+    prof_info = request.GET['prof_name']
+    #split prof info
+    prof_info = prof_info.split(",")
+    prof_names = prof_info[0].split(" ")
+    prof_uni = prof_info[1].lstrip()
+
+    #lookup prof id
+    prof_id = Professor.objects.get(pre_name=prof_names[0], last_name=prof_names[1], university_id__name=prof_uni)
+
+    redirect_to = "/professor/%s" % prof_id.id
+    return HttpResponseRedirect(redirect_to)
+
+    
 
 
 
