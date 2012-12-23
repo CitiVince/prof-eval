@@ -6,7 +6,7 @@ from haystack.query import SearchQuerySet
 
 from evals.views import SearchWithRequest
 
-from evals.views import home, done, logout, error, form, form2
+from evals.views import home, logged_in, logout, error, form, form2
 from evals.facebook import facebook_view
 
 # Uncomment the next two lines to enable the admin:
@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     #url(r'^search/', include('evals.haystack_urls')),
     url(r'^search/', 'evals.views.SearchWithRequest',name='haystack_search'),
     url(r'', include('social_auth.urls')),
-    url(r'^done/$', done, name='done'),
+    url(r'^logged-in/$', 'evals.views.logged_in', name='logged-in'),
     url(r'^error/$', error, name='error'),
     url(r'^logout/$', logout, name='logout'),
     url(r'^form/$', form, name='form'),

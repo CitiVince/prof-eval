@@ -48,11 +48,13 @@
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" href="/">ProfEval</a>
-                <div class="nav_search" id='nav_search'>
-                    Find your prof
-                    <input type="text" class="span3" id="search" data-provide="typeahead" data-items="4" autocomplete="off" />
+                {% if home_view %}
+                {% else %}
+                    <div class="nav_search" id='nav_search'>
+                        <input type="text" class="span3" id="search" data-provide="typeahead" data-items="4" autocomplete="off" placeholder="Finde deinen Prof..." />
 
-                </div>
+                    </div>
+                {% endif %}
                     
 
                 </div><!--/.nav-collapse -->

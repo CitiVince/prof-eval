@@ -50,20 +50,21 @@ class SearchWithRequest(SearchView):
 def home(request):
     """Home view, displays login mechanism"""
     if request.user.is_authenticated():
-        return HttpResponseRedirect('done')
+        return HttpResponseRedirect('logged-in')
     else:
-        return render_to_response('content/home.html', {'version': version},
+        home_view = 1
+        return render_to_response('content/home.html', {'version': version, "home_view":home_view},
                                   RequestContext(request))
 
 
 @login_required
-def done(request):
+def logged_in(request):
     """Login complete view, displays user data"""
     ctx = {
         'version': version,
         'last_login': request.session.get('social_auth_last_login_backend')
     }
-    return render_to_response('content/done.html', ctx, RequestContext(request))
+    return render_to_response('content/logged_in.html', ctx, RequestContext(request))
 
 
 def error(request):

@@ -1,0 +1,12 @@
+{% extends "site.html" %}
+
+{% block content %}
+
+<div class="login_box">
+    <h3>Hallo {{ user.first_name }}</h3>
+    <a rel="nofollow" class="logout" href="/logout/">Logout</a>
+</div>
+
+
+<script src="{{ STATIC_URL }}evals/js/logged_in.js" type="text/javascript"></script>
+{% endblock %}
